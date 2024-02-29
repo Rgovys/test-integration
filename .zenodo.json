@@ -1,13 +1,22 @@
 {
-  "upload_type": "software", 
-  "description": "This is a test",
-  "title": "Zenodo Release Action",
-  "creators": [
-     {
-       "affiliation": "test",
-       "name": "test"
-     }
-  ],
-  "keywords": ["test"],
-  "license": "MIT"
+    "creators": [
+        {
+            "affiliation": "NOAA",
+            "name": "Doe, Jane",
+            "orcid": "0000-0000-0000-0000"
+        },
+        {
+            "affiliation": "NOAA",
+            "name": "Pérez, Juan",
+            "orcid": "0000-0000-0000-0000"
+        }
+    ],
+    "description": "temp",
+    "keywords": [
+        "R"
+    ],
+    "license": {
+        "id": "Apache-2.0"
+    },
+    "title": "Test Package"
 }
