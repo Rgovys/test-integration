@@ -1,4 +1,4 @@
-name: Release on Zenodo
+name: Zenodo Release
 
 on:
   workflow_dispatch: null
@@ -6,32 +6,30 @@ on:
     types: [published]
 
 jobs:
-  upload-to-zenodo:
-    runs-on: ubuntu-latest
-    name: A job to update metadata and push a release to Zenodo
+  deploy:
+    runs-on: ubuntu-20.04
 
     steps:
-      # This step is not needed at the moment but might decide to add on more steps in the future
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
+    - uses: actions/checkout@v3
+    - name: download archive to runner
+      env:
+        tarball: ${{ github.event.release.tarball_url }}
+      run: |
+        name=$(basename ${tarball})        
+        curl -L $tarball > $name
+        echo "archive=${name}" >> $GITHUB_ENV
 
-      - name: Upload to Zenodo
-        id: release
-        uses: megasanjay/upload-to-zenodo@v2.0.1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          zenodo_token: ${{ secrets.ZENODO_TOKEN }}
-          zenodo_deposition_id: 10719786
-          zenodo_publish: true
-          zenodo_sandbox: false
-          commit_message: 'chore: update ${file_name} for Zenodo release'
-          update_metadata_files: false
-          codemeta_json: false
-          citation_cff: false
-          zenodo_json: false
+    - name: Run Zenodo Deploy
+      uses: rseng/zenodo-release@main
+      with:
+        token: ${{ secrets.ZENODO_TOKEN }}
+        version: ${{ github.event.release.tag_name }}
+        archive: ${{ env.archive }}
 
-      # Get the doi from the `release` step
-      - name: Get the output doi
-        run: echo "The released doi was ${{ steps.release.outputs.doi }}"
+        # Optional DOI for all versions. Leaving this blank (the default) will create
+        # a new DOI on every release. Use a DOI that represents all versions will
+        # create a new version for this existing DOI.
+        #
+        # Newer versions have their own DOIs, but they're also linked to this DOI
+        # as a different version. When using this, use the DOI for all versions.
+        doi: '10.5281/zenodo.10719406'
