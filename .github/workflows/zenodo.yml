@@ -27,10 +27,10 @@ jobs:
           zenodo_publish: true
           zenodo_sandbox: false
           commit_message: 'chore: update ${file_name} for Zenodo release'
-          update_metadata_files: true
-          codemeta_json: true
-          citation_cff: true
-          zenodo_json: true
+          update_metadata_files: false
+          codemeta_json: false
+          citation_cff: false
+          zenodo_json: false
 
       # Get the doi from the `release` step
       - name: Get the output doi
