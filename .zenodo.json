@@ -18,5 +18,9 @@
     "license": {
         "id": "Apache-2.0"
     },
-    "title": "Test Package"
+    "title": "Test Package",
+    "related_identifiers": [
+        {"identifier": "https://github.com/Rgovys/test-integration/tree/", 
+        "relation": "isSupplementTo", "resource_type": "software", "scheme": "url"}
+    ]
 }
