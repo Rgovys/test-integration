@@ -2,13 +2,11 @@
     "creators": [
         {
             "affiliation": "NOAA",
-            "name": "Doe, Jane",
-            "orcid": "0000-0000-0000-0000"
+            "name": "Doe, Jane"
         },
         {
             "affiliation": "NOAA",
-            "name": "Pérez, Juan",
-            "orcid": "0000-0000-0000-0000"
+            "name": "Pérez, Juan"
         }
     ],
     "description": "temp",
