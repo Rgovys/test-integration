@@ -20,7 +20,7 @@ jobs:
         echo "archive=${name}" >> $GITHUB_ENV
 
     - name: Run Zenodo Deploy
-      uses: eeholmes/zenodo-release@main
+      uses: nmfs-opensci/zenodo-release@main
       with:
         token: ${{ secrets.ZENODO_TOKEN }}
         version: ${{ github.event.release.tag_name }}
