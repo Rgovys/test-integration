@@ -24,6 +24,7 @@ jobs:
       with:
         token: ${{ secrets.ZENODO_TOKEN }}
         version: ${{ github.event.release.tag_name }}
+        html_url: ${{ github.event.release.html_url }}
         zenodo_json: .zenodo.json   
         archive: ${{ env.archive }}
         doi: 10.5281/zenodo.10719406
